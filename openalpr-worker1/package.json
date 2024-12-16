@@ -1,0 +1,9 @@
+{
+    "name": "openalpr-worker1",
+    "version": "1.0.0",
+    "main": "worker1.js",
+    "dependencies": {
+      "amqplib": "^0.8.0",
+      "minio": "^7.0.18"
+    }
+  }

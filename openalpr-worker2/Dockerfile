@@ -3,16 +3,19 @@ FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y \
+    curl \
+    gnupg \
     build-essential \
     cmake \
     libopencv-dev \
     libtesseract-dev \
     libleptonica-dev \
     libcurl4-openssl-dev \
+    liblog4cplus-dev \
     wget \
     git \
-    python3-pip \
-    tzdata \
+    nodejs \
+    npm \
  && apt-get clean
 
 RUN git clone https://github.com/openalpr/openalpr.git /openalpr && \
@@ -24,8 +27,9 @@ RUN git clone https://github.com/openalpr/openalpr.git /openalpr && \
 
 WORKDIR /app
 
-COPY worker.py .
+COPY package.json .
+RUN npm install
 
-RUN pip3 install pika minio
+COPY worker2.js .
 
-CMD ["python3", "worker.py"]
+CMD ["node", "worker2.js"]
