@@ -19,6 +19,8 @@ services:
 
   rabbitmq:
     image: rabbitmq:3-management
+    environment:
+      - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=-rabbit deprecated_features permit_management_metrics_collection true
     ports:
       - "5672:5672"
       - "15672:15672"
