@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM node:16
 
 ENV DEBIAN_FRONTEND=noninteractive
 
